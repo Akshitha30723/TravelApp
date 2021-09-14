@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect, Link, NavLink, Route, withRouter} from "react-router-dom";
-import "./login.css";
+
 class Login extends Component{
     constructor(props) {
         super(props);
@@ -8,7 +8,7 @@ class Login extends Component{
         this.state ={
            form:{ 
             username: "",
-            password: "",
+            password: ""
         },
         formErrorMessage:{
         usernameError:"",
@@ -22,7 +22,7 @@ class Login extends Component{
         };
     }
     routeChange() {
-        let path = '/dashboard';
+        let path = "/dashboard";
         this.props.history.push(path);
       }
     handleSubmit = event => {
@@ -42,7 +42,7 @@ class Login extends Component{
         if(fieldName==="username")
         {
             if(value===""){
-                errMsg="field required";
+                errMsg="Field required";
             }
             else
             errMsg="";
@@ -51,7 +51,10 @@ class Login extends Component{
       }
       if(fieldName==="password"){
           if(value===""){
-              errMsg="field required";
+              errMsg="Field required";
+          }
+          else if(value.length<8){
+              errMsg="Minimum length should be 8";
           }
           else
           errMsg="";
@@ -61,32 +64,31 @@ class Login extends Component{
       formValidDum.buttonActive = formValidDum.username && formValidDum.password;
     this.setState({ formErrorMessage : formErrDum, formValid : formValidDum});
     }
-
-
     render(){
         let {usernameError,passwordError} = this.state.formErrorMessage;
         return(
-            <div>
-                <form className="card" onSubmit={this.handleSubmit}>
-                    <label> ACCOUNT LOGIN</label><br/>
-                    
+            <div className="log">
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form-inner">
+                    <h2> ACCOUNT LOGIN</h2>
+                 <div className="form-group">   
                 <label htmlFor='username'>USERNAME:</label>
-                <input type="text" name="username" onChange={this.handleChange}/><br/>
-                <span className='text-danger'>{usernameError}</span><br/>
-                
-                
+                <input type="text" name="username" onChange={this.handleChange}/>
+                <span className='text-danger'>{usernameError}</span>
+                </div>
+                <div className="form-group">
                 <label htmlFor='password'>PASSWORD:</label>
                 <input type="password" name="password" onChange={this.handleChange}/><br/>
                 <span className='text-danger'>{passwordError}</span><br/>
+                </div>
                 
                 
-                <input type="checkbox" className="remember"/>
-                <label htmlFor="rememberMe" className="remember">Remember Me</label><br/>
-               <div>
+               
                 <button disabled={!this.state.formValid.buttonActive} className="button" onClick={this.routeChange}>Login</button>
+                
                 </div>
                 </form>
-            </div>
+                </div>
         )
     }
 

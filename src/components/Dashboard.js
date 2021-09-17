@@ -1,25 +1,35 @@
 import React from 'react';
-import SearchIcon from '@material-ui/icons/Search';
+import img from '../assets/img.jpg';
+import Side from './sidebar'; 
+import Search from './Searching';
+import Menu from './Menu';
+import Experiences from './Experiences';
+
 function Dashboard(){
-    const style={width:45,height:25,color:'lightcoral'}
-    const style1={width:45,height:25,color:'white'}
-    const style2={width:25,height:15,color:'white'}
     return(
         
-        <div className="dashboard">
-            <div className="topSec">
-                <div className="searchcon">
-                    <button className="search-btn">
-                    <SearchIcon/>
-                    </button>
-                    <input className="searchcontrol" type="text" placeholder="Search"/>
+        <div fluid className="dashboard">
+            <div>
+            <Side/>
+            </div>
+            <div className="content">
+            
+                <div className="topSec">
+                    <div >
+                    <Search/>
                     </div>
                 <div className="prof">
                     Hello, User <img className="imge" src={img}/>
                 </div>
+                </div>
+            <div className="box-menu">
+                <Menu/>
             </div>
-            
-      
+                <div className="Exp">
+                    <Experiences/>
+                </div>
+            </div>
+            </div>
     )
 }
 export default Dashboard;

@@ -44,6 +44,9 @@ class Login extends Component{
             if(value===""){
                 errMsg="Field required";
             }
+            else if(value.length<8){
+                errMsg="Minimum length should be 8"
+            }
             else
             errMsg="";
         formErrDum.usernameError = errMsg;
@@ -78,14 +81,12 @@ class Login extends Component{
                 </div>
                 <div className="form-group">
                 <label htmlFor='password'>PASSWORD:</label>
-                <input type="password" name="password" onChange={this.handleChange}/><br/>
-                <span className='text-danger'>{passwordError}</span><br/>
+                <input type="password" name="password" onChange={this.handleChange}/>
+                <span className='text-danger'>{passwordError}</span>
                 </div>
-                
-                
-               
+                <div className="form-group">
                 <button disabled={!this.state.formValid.buttonActive} className="button" onClick={this.routeChange}>Login</button>
-                
+                </div>
                 </div>
                 </form>
                 </div>
